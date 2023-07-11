@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.header {
+background-color: #61dafb;
+height: 3rem;
+}
+
+.main-container {
+  background-color:aquamarine;
+  display: flex;
+}
+
+.left-navigation {
+  width: 30%;
+}
+
+.details {
+  width: 70%;
+}
+
+.disabled-link {
+  color: red;
+}
