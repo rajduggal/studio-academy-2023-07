@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import { navItems, useData, listOfCourses } from "./constants";
 
 import Header from "./components/Header";
 import LeftNavigation from "./components/LeftNavigation";
@@ -10,61 +11,51 @@ import DetailsComponent from "./components/Details";
 // List of courses/plans for training sessions
 // User details -> Header
 
-const useData = {
-  firstName: "FName",
-  lastName: "LName",
-};
-
-const navItems = [
-  {
-    id: 8749234,
-    title: "Courses List",
-    active: true,
-  },
-  {
-    title: "Trainers",
-    active: true,
-  },
-  {
-    title: "Search",
-    active: false,
-  },
-];
-
-const listOfCourses = [
-  {
-    title: "ReactJS foundations",
-    duration: "3 Weeks",
-    trainers: ["Rajan", "Deba", "Sandeep"],
-    reviews: ["Review 1", "details of course review", "abc"],
-    techStack: ["HTML", "CSS", "Javascript", "Components", "Hooks"],
-    description: "This course covers front end foundations for ReactJS",
-    rating: 12358,
-  },
-];
+const ContextData = createContext();
 
 function App() {
   const [activeSection, setActiveSection] = useState(navItems[0]["title"]);
+  const [tempData, setTempData] = useState("Hi i am temp data");
 
   const navigateToSection = (value) => {
-    setActiveSection(value);
+    setActiveSection(value.title);
+    setTempData(value.title);
   };
 
+  // TO BE REMOVED
+  useEffect(() => {
+    console.log("hello i am useEffect 1");
+  });
+
+  // TO BE REMOVED
+  useEffect(() => {
+    console.log("hello i am useEffect 2");
+  }, []);
+
+  // TO BE REMOVED
+  useEffect(() => {
+    console.log("hello i am useEffect 3");
+  }, [activeSection]);
+
   return (
-    <div className="App">
-      <Header />
-      <div className="main-container">
-        <LeftNavigation
-          navItems={navItems}
-          navigateToSection={navigateToSection}
-        />
-        <DetailsComponent
-          listOfCourses={listOfCourses}
-          activeSection={activeSection}
-        />
+    <ContextData.Provider value={tempData}>
+      <div className="App">
+        <Header />
+        <div className="main-container">
+          <LeftNavigation
+            navItems={navItems}
+            navigateToSection={navigateToSection}
+          />
+          <DetailsComponent
+            listOfCourses={listOfCourses}
+            activeSection={activeSection}
+          />
+        </div>
       </div>
-    </div>
+    </ContextData.Provider>
   );
 }
+
+export { ContextData };
 
 export default App;
