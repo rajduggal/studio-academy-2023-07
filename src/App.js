@@ -7,10 +7,6 @@ import Header from "./components/Header";
 import LeftNavigation from "./components/LeftNavigation";
 import DetailsComponent from "./components/Details";
 
-// List of navigation flows
-// List of courses/plans for training sessions
-// User details -> Header
-
 const ContextData = createContext();
 
 function App() {
@@ -21,21 +17,6 @@ function App() {
     setActiveSection(value.title);
     setTempData(value.title);
   };
-
-  // TO BE REMOVED
-  useEffect(() => {
-    console.log("hello i am useEffect 1");
-  });
-
-  // TO BE REMOVED
-  useEffect(() => {
-    console.log("hello i am useEffect 2");
-  }, []);
-
-  // TO BE REMOVED
-  useEffect(() => {
-    console.log("hello i am useEffect 3");
-  }, [activeSection]);
 
   return (
     <ContextData.Provider value={tempData}>
