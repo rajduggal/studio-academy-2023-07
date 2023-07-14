@@ -1,59 +1,33 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import { navItems, useData, listOfCourses } from "./constants";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import LeftNavigation from "./components/LeftNavigation";
-import DetailsComponent from "./components/Details";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
-import Detail from "./pages/Detail";
+import Session from "./pages/Session";
 import NoPage from "./pages/NoPage";
-
-const ContextData = createContext();
+import Topic from "./pages/Topic";
+import Trainer1 from "./pages/Trainer1";
+import Trainer2 from "./pages/Trainer2";
 
 function App() {
-  const [activeSection, setActiveSection] = useState(navItems[0]["title"]);
-  const [tempData, setTempData] = useState("Hi i am temp data");
-
-  const navigateToSection = (value) => {
-    setActiveSection(value.title);
-    setTempData(value.title);
-  };
-
   return (
-    // <ContextData.Provider value={tempData}>
-    //   <div className="App">
-    //     <Header />
-    //     <div className="main-container">
-    //       <LeftNavigation
-    //         navItems={navItems}
-    //         navigateToSection={navigateToSection}
-    //       />
-    //       <DetailsComponent
-    //         listOfCourses={listOfCourses}
-    //         activeSection={activeSection}
-    //       />
-    //     </div>
-    //   </div>
-    // </ContextData.Provider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="detail" element={<Detail />} />
+          <Route path="session" element={<Session />} />
+          <Route path="session/:detailId" element={<Topic />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="contact/trainer1" element={<Trainer1 />} />
+          <Route path="contact/trainer2" element={<Trainer2 />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
-export { ContextData };
 
 export default App;
