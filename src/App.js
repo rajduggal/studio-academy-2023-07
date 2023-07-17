@@ -6,6 +6,7 @@ import { navItems, useData, listOfCourses } from "./constants";
 import Header from "./components/Header";
 import LeftNavigation from "./components/LeftNavigation";
 import DetailsComponent from "./components/Details";
+import ToDos from "./components/ToDos";
 
 const ContextData = createContext();
 
@@ -33,6 +34,7 @@ function App() {
           />
         </div>
       </div>
+      <ToDos />
     </ContextData.Provider>
   );
 }
