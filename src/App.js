@@ -4,8 +4,6 @@ import "./App.scss";
 import { navItems, useData, listOfCourses } from "./constants";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import LeftNavigation from "./components/LeftNavigation";
-import DetailsComponent from "./components/Details";
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import FAQ from "./pages/FAQ";
