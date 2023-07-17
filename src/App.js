@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import { navItems, useData, listOfCourses } from "./constants";
 
 import Header from "./components/Header";
