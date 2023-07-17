@@ -3,25 +3,25 @@ import Header from "../components/Header";
 
 const Layout = () => {
   return (
-    <>
+    <div className="layout-container">
       <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <Link to="/courses">Courses</Link>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to="/trainers">Trainers</Link>
           </li>
           <li>
-            <Link to="/detail">Detail</Link>
+            <Link to="/faq">FAQ</Link>
           </li>
         </ul>
       </nav>
       <Outlet />
-    </>
+    </div>
   );
 };
 
