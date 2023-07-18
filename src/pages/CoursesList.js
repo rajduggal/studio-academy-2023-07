@@ -1,27 +1,19 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import HttpService from "../services/httpService";
-
-const Paginator = ({ pageSize, pageNumber, sortDirection, pageChange }) => {
-  const pageNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  return (
-    <div>
-      {pageNumbers.map((page) => (
-        <span
-          key={page}
-          onClick={() => {
-            pageChange(page);
-          }}
-        >
-          {page} |
-        </span>
-      ))}
-    </div>
-  );
-};
+import Paginator from "../components/Paginator";
+import Task from "../components/Task";
+import { useSelector, useDispatch } from "react-redux";
+import { updateCurrentPage } from "../redux/paginatorSlice";
 
 const CoursesList = () => {
   const [data, setData] = useState([]);
+
+  const currentPage = useSelector((state) => state.paginator.currentPage); // State
+  const dispatch = useDispatch(); // Actions
+
+  const { currentTaskValue, currentTime } = useSelector(
+    (state) => state.currentTask
+  );
 
   const [filteredData, setFilteredData] = useState([]);
 
@@ -45,13 +37,17 @@ const CoursesList = () => {
 
   const pageChange = (page) => {
     filterDataForPagination(data, page);
+    dispatch(updateCurrentPage(page));
   };
 
   return (
     <p>
+      Current page: {currentPage} | Current task: {currentTaskValue} | Time:{" "}
+      {currentTime}
+      <hr />
       <Paginator pageChange={pageChange} />
       {filteredData.map((task) => (
-        <div key={task.id}>{task.title}</div>
+        <Task task={task} />
       ))}
     </p>
 

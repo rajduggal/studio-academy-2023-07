@@ -13,6 +13,18 @@
   }
 }
 
+.paginator {
+  margin-bottom: 10px;
+  > span {
+    border: 1px solid grey;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
